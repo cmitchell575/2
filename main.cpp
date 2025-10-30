@@ -1,3 +1,9 @@
+/***************************************
+Strongest Link
+Author: Chase Mitchell
+Date Completed: 10/29/25
+Description: Create a prototype of a trivia game using a linked list to parse specific information from a .txt file
+***************************************/
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -23,7 +29,7 @@ public:
     int getCorrectAnswerIndex() const { return correct_; }
 };
 
-bool populateQuestionListFromFile(LinkedList& list) {
+bool populateQuestionListFromFile(LinkedList<Question>& list) {
     ifstream in("SampleQuestions.txt");
     if (!in.is_open()) return false;
     string line;
@@ -40,31 +46,18 @@ bool populateQuestionListFromFile(LinkedList& list) {
         int correctNum = 0;
         stringstream convert(correctStr);
         convert >> correctNum;
-        string qdata = prompt + ";" + a1 + ";" + a2 + ";" + a3 + ";" + a4 + ";" + to_string(correctNum - 1);
-        list.pushBack(qdata);
+        list.pushBack(Question(prompt,a1,a2,a3,a4,correctNum - 1));
     }
     return true;
 }
 
 int main() {
-    LinkedList questions;
+    LinkedList<Question> questions;
     if (!populateQuestionListFromFile(questions)) return 0;
     cout << "Welcome to The Strongest Link!\n\n";
     int currentStreak = 0, bestStreak = 0, qnum = 1;
     while (!questions.empty()) {
-        string qdata = questions.popFront();
-        stringstream ss(qdata);
-        string prompt, a1, a2, a3, a4, correctStr;
-        getline(ss,prompt,';');
-        getline(ss,a1,';');
-        getline(ss,a2,';');
-        getline(ss,a3,';');
-        getline(ss,a4,';');
-        getline(ss,correctStr,';');
-        int correct = 0;
-        stringstream convert(correctStr);
-        convert >> correct;
-        Question q(prompt,a1,a2,a3,a4,correct);
+        Question q = questions.popFront();
         cout << "Question " << qnum++ << ":\n";
         cout << q.getPrompt() << "\n\n";
         for (int i = 0; i < 4; ++i) cout << i+1 << ". " << q.getAnswerOption(i) << "\n";

@@ -1,16 +1,14 @@
 #ifndef LINKEDLIST_HPP
 #define LINKEDLIST_HPP
 
-#include <cstddef>
-using namespace std;
-
+template <typename T>
 class LinkedList
 {
 private:
-    struct Node {
+   struct Node {
+    T data;
         Node* next;
-        string data;
-        Node(string d, Node* n) : data(d), next(n) {}
+        Node(T d, Node* n) : data(d), next(n) {}
     };
     Node* head_;
 public:
@@ -32,11 +30,11 @@ public:
         }
         return count;
     }
-    void pushFront(string value) {
+    void pushFront(T value) {
         Node* newNode = new Node(value, head_);
         head_ = newNode;
     }
-    void pushBack(string value) {
+    void pushBack(T value) {
         Node* newNode = new Node(value, nullptr);
         if (head_ == nullptr) {
             head_ = newNode;
@@ -48,9 +46,9 @@ public:
         }
         p->next = newNode;
     }
-    string popFront() {
+    T popFront() {
         Node* old = head_;
-        string value = old->data;
+        T value = old->data;
         head_ = old->next;
         delete old;
         return value;
