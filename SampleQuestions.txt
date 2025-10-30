@@ -1,0 +1,5 @@
+What planet is closest to the Sun?;1;Mercury;Venus;Earth;Mars
+Which ocean is the largest on Earth?;2;Indian Ocean;Pacific Ocean;Atlantic Ocean;Arctic Ocean
+What is the capital of France?;3;Berlin;Madrid;Paris;Rome
+Which gas do plants absorb from the atmosphere?;4;Oxygen;Hydrogen;Nitrogen;Carbon Dioxide
+Who wrote 'Romeo and Juliet'?;1;William Shakespeare;Charles Dickens;Mark Twain;Jane Austen
